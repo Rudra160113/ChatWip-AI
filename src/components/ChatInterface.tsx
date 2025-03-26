@@ -116,3 +116,138 @@ export function ChatInterface() {
                 transition={{ duration: 0.3 }}
                 className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
               > 
+                <div className={`flex items-start max-w-[80%] ${message.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
+                  <Avatar className={`h-8 w-8 ${message.role === 'user' ? 'ml-2' : 'mr-2'}`}>
+                    {message.role === 'assistant' ? (
+                      <div className="h-full w-full bg-primary flex items-center justify-center text-primary-foreground font-semibold">
+                        E
+                      </div>
+                    ) : (
+                      <div className="h-full w-full bg-secondary flex items-center justify-center">
+                        <span className="text-xs font-medium">You</span>
+                      </div>
+                    )}
+                  </Avatar>
+                  
+                  <div 
+                    className={`p-3 rounded-lg ${
+                      message.role === 'user' 
+                        ? 'bg-primary/10 rounded-tr-none' 
+                        : 'bg-secondary/30 rounded-tl-none'
+                    }`}
+                  >
+                    <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                    <div className="mt-1 text-right">
+                      <span className="text-[10px] text-muted-foreground">
+                        {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+            
+            {isLoading && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="flex justify-start"
+              >
+                <div className="flex items-start max-w-[80%]">
+                  <Avatar className="h-8 w-8 mr-2">
+                    <div className="h-full w-full bg-primary flex items-center justify-center text-primary-foreground font-semibold">
+                      E
+                    </div>
+                  </Avatar>
+                  
+                  <div className="p-3 rounded-lg bg-secondary/30 rounded-tl-none">
+                    <div className="flex space-x-2">
+                      <div className="h-2 w-2 bg-foreground/40 rounded-full animate-bounce"></div>
+                      <div className="h-2 w-2 bg-foreground/40 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                      <div className="h-2 w-2 bg-foreground/40 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </ScrollArea>
+      
+      {/* Input Area */}
+      <div className="p-4 border-t">
+        <div className="flex items-center space-x-2">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="icon" className="rounded-full">
+                  <Paperclip size={20} />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Attach files</p>
+              </TooltipContent>
+            </Tooltip>
+            
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="icon" className="rounded-full">
+                  <ImageIcon size={20} />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Generate image</p>
+              </TooltipContent>
+            </Tooltip>
+            
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button variant="ghost" size="icon" className="rounded-full">
+                  <Mic size={20} />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Voice input</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          
+          <div className="flex-1 relative">
+            <Input
+              ref={inputRef}
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder="Type a message..."
+              className="pr-10 py-6"
+            />
+            {inputValue && (
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full hover:bg-primary hover:text-primary-foreground"
+                onClick={() => setInputValue('')}
+              >
+                <X size={16} />
+              </Button>
+            )}
+          </div>
+          
+          <Button 
+            onClick={handleSendMessage} 
+            size="icon" 
+            className="rounded-full h-10 w-10 bg-primary text-primary-foreground"
+            disabled={!inputValue.trim() || isLoading}
+          >
+            {isLoading ? (
+              <RefreshCw size={18} className="animate-spin" />
+            ) : (
+              <ArrowUp size={18} />
+            )}
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+      }
