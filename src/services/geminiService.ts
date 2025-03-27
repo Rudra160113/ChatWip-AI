@@ -15,7 +15,7 @@ export const generateGeminiResponse = async (requestData: GeminiRequest): Promis
   try {
     // Note: Gemini requires an API key that should be obtained from Google AI Studio
     // This is a placeholder implementation
-    const apiKey = "YOUR_GEMINI_API_KEY"; // Replace with actual key in production
+    const apiKey = "AIzaSyCCf44h36tYYRW_7fonJPMweZHF_y-jw7E"; // Replace with actual key in production
     
     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
       method: "POST",
