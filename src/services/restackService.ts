@@ -9,7 +9,7 @@ export interface RestackRequest {
 
 export const callRestackAPI = async (requestData: RestackRequest): Promise<any> => {
   try {
-    const apiKey = "YOUR_RESTACK_API_KEY"; // Replace with actual key in production
+    const apiKey = "6c00fe4bf759d23055e8bf1da96b00fbaad57cb4865c04361699126942674507"; // Replace with actual key in production
     
     const response = await fetch(requestData.endpoint, {
       method: requestData.method || "GET",
