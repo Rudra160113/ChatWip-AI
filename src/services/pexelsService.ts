@@ -41,7 +41,7 @@ export interface PexelsResponse {
 
 export const searchPexelsImages = async (requestData: PexelsSearchRequest): Promise<PexelsPhoto[]> => {
   try {
-    const apiKey = "YOUR_PEXELS_API_KEY"; // Replace with actual key in production
+    const apiKey = "nEq9YUTigp2JnAaBfXwDCF6bQ1jOfamWlLGkogkv7reM6X2LpuapyigD"; // Replace with actual key in production
     const queryParams = new URLSearchParams({
       query: requestData.query,
       orientation: requestData.orientation || "landscape",
