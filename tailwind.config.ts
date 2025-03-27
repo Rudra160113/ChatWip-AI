@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -68,7 +67,7 @@ export default {
           ring: 'hsl(var(--sidebar-ring))'
         }
       },
-				borderRadius: {
+      borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
@@ -110,7 +109,7 @@ export default {
           '0%': { transform: 'scale(0.95)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' }
         },
-				'blur-in': {
+        'blur-in': {
           '0%': { filter: 'blur(5px)', opacity: '0' },
           '100%': { filter: 'blur(0)', opacity: '1' }
         }
