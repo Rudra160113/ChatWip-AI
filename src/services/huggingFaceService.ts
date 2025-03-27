@@ -8,7 +8,7 @@ export interface HuggingFaceRequest {
 
 export const generateHuggingFaceInference = async (requestData: HuggingFaceRequest): Promise<any> => {
   try {
-    const apiKey = "YOUR_HUGGINGFACE_API_KEY"; // Replace with actual key in production
+    const apiKey = "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"; // Replace with actual key in production
     const model = requestData.model || "mistralai/Mistral-7B-Instruct-v0.2";
     
     const response = await fetch(`https://api-inference.huggingface.co/models/${model}`, {
