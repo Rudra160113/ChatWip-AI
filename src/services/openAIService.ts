@@ -17,7 +17,7 @@ export interface OpenAIImageRequest {
 
 export const generateOpenAICompletion = async (requestData: OpenAIRequest): Promise<string> => {
   try {
-    const apiKey = "YOUR_OPENAI_API_KEY"; // Replace with actual key in production
+    const apiKey = "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"; // Replace with actual key in production
     
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
